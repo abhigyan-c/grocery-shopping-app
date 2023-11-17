@@ -1,0 +1,155 @@
+/* Profile.css */
+
+body {
+  font-family: 'Verdana';
+}
+
+h3 {
+  text-align: left;
+}
+
+.profile-container {
+  background: linear-gradient(#9198e5, #CBC3E3);
+  padding:  20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.profile-heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.profile-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.profile-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.save-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s; /* Add a background-color transition */
+}
+
+.save-button:hover {
+  background-color: #0056b3; /* New color on hover */
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  align-self: right;
+  transition: background-color 0.2s; /* Add a background-color transition */
+}
+
+/* Change button color on hover */
+.edit-button:hover {
+  background-color: #0056b3; /* New color on hover */
+}
+
+.section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.entry {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
+}
+
+.entry:hover {
+  transform: scale(1.05); /* Scale up by 5% on hover */
+}
+
+.view-more-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s; /* Add a background-color transition */
+}
+
+/* Change button color on hover */
+.view-more-button:hover {
+  background-color: #0056b3; /* New color on hover */
+}
+
+
+.two-column-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: -10px; /* To compensate for the column padding */
+}
+
+.column {
+  width: calc(50% - 20px); /* 50% width minus the margin */
+  margin: 10px; /* Add some spacing between the columns */
+}
+
+.logout {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  width: 50px;
+  border: 3px solid #000000;
+  padding: 10px;
+  transition: transform 0.2s;
+}
+
+.logout:hover {
+  transform: scale(1.05);
+}
+
+.settings {
+  position: absolute;
+  top: 0%;
+  right: 5%;
+  width: 50px;
+  border: 3px solid #000000;
+  padding: 10px;
+  transition: transform 0.2s;
+}
+
+.settings:hover {
+  transform: scale(1.05);
+}
+
+.header{
+  position: relative;
+}
