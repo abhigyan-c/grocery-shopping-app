@@ -4,6 +4,7 @@ import Profile from './pages/Profile'
 import DatabaseTest from './pages/DatabaseTest'
 import OrderHistory from './pages/OrderHistory'
 import Navbar from './pages/Navbar'
+import ProductPage from './pages/ProductPage'
 function App() {
   const orders = [
     {
@@ -29,7 +30,7 @@ function App() {
     <>
     <Navbar/>
     <div className='overall'>
-      <OrderHistory orders={orders}/>
+      <ProductPage/>
     </div>
       
     </>
