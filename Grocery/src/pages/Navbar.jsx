@@ -1,16 +1,42 @@
-// Navbar.js
-
+// NavBar.jsx
 import React from 'react';
-import './Navbar.css';
-import { Feather, Home } from 'react-feather';
+import { Link } from 'react-router-dom';
+import { Home, ShoppingBag, LogOut, ShoppingCart, Heart, List, Settings } from 'react-feather';
+import './NavBar.css'; // Import your CSS file
 
-const Navbar = () => {
+const NavBar = () => {
   return (
     <nav className="navbar">
-      <button className='nav-icons'><Home/></button>
-      <div className="navbar-title">Grocery Shopping App</div>
+      <div className="navbar-container">
+        
+        <Link to="/order-history" className="navbar-item">
+          <List size={24} />
+          Orders
+        </Link>
+        
+        <Link to="/wishlist" className="navbar-item">
+          <Heart size={24} />
+          Wishlist
+        </Link>
+        <Link to="/" className="navbar-item">
+          <Home size={24} />
+          Home
+        </Link>
+        <Link to="/cart" className="navbar-item">
+          <ShoppingCart size={24} />
+          Cart
+        </Link>
+        <Link to="/profile" className="navbar-item">
+          <Settings size={24} />
+          Profile
+        </Link>
+        <Link to="/logout" className="navbar-item">
+          <LogOut size={24} />
+          Log Out
+        </Link>
+      </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default NavBar;

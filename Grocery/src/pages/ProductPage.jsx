@@ -6,7 +6,7 @@ import './ProductPage.css';
 const ProductPage = () => {
   const product = {
     name: 'Dragon Fruit',
-    photo: './src/assets/ulhdg64n.bmp',
+    photo: 'https://i.imgur.com/qqzMiJW.png',
     ratings: 4.5,
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
     features: [
