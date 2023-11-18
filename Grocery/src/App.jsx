@@ -5,6 +5,7 @@ import DatabaseTest from './pages/DatabaseTest'
 import OrderHistory from './pages/OrderHistory'
 import Navbar from './pages/Navbar'
 import ProductPage from './pages/ProductPage'
+import Landing from './pages/Landing'
 function App() {
   const orders = [
     {
@@ -29,8 +30,9 @@ function App() {
   return (
     <>
     <Navbar/>
+    <Landing/>
     <div className='overall'>
-      <ProductPage/>
+      {/* <ProductPage/> */}
     </div>
       
     </>
