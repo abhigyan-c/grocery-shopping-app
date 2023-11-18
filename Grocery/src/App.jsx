@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import './App.css'
 import Profile from './pages/Profile' 
@@ -6,6 +6,8 @@ import DatabaseTest from './pages/DatabaseTest'
 import OrderHistory from './pages/OrderHistory'
 import Navbar from './pages/Navbar'
 import ProductPage from './pages/ProductPage'
+import Landing from './pages/Landing';
+
 const Navigation = () => {
   return (
     <nav>
@@ -116,18 +118,20 @@ function App() {
     },
   ];
 
-
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <Router>
       <div>
         {/* Your other components and routes */}
-        <Navbar/>
+        {loggedIn && <Navbar/>}
         <Routes>
+          <Route path = "/" element = {<Landing/>}/>
           <Route path="/order-history" element={<OrderHistory orders = {orders}/>} />
           <Route path="/product/:productId" element={<ProductPage />} />
-          {/* Add more routes as needed */}
-        </Routes>
+          <Route path="/profile" element={<Profile/>}/>
+
+      </Routes>
       </div>
     </Router>
   );
