@@ -5,7 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import TextField from '@mui/material/TextField';
 
 
-const Home = () =>{
+const LandingPage = () =>{
     return(
         <div className="home-container">
             <Navbar/>
@@ -16,4 +16,4 @@ const Home = () =>{
         </div>
     )
 };
-export default Home;
+export default LandingPage;
