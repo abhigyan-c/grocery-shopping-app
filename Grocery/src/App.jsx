@@ -7,6 +7,8 @@ import OrderHistory from './pages/OrderHistory'
 import Navbar from './pages/Navbar'
 import ProductPage from './pages/ProductPage'
 import Landing from './pages/Landing';
+import Navbar2 from './pages/Navbar2';
+
 
 const Navigation = () => {
   return (
@@ -118,13 +120,14 @@ function App() {
     },
   ];
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false); //use this is log-in/sign-in
 
   return (
     <Router>
       <div>
         {/* Your other components and routes */}
         {loggedIn && <Navbar/>}
+        {!loggedIn && <Navbar2/>}
         <Routes>
           <Route path = "/" element = {<Landing/>}/>
           <Route path="/order-history" element={<OrderHistory orders = {orders}/>} />

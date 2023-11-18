@@ -12,7 +12,7 @@ const Landing = () => {
       <div className="search-bar">
         <input type="text" placeholder="   Search for items" />
         <button className="search-button">Search</button>
-        <button className="login-button">Log In or Sign Up</button>
+        {/* <button className="login-button">Log In or Sign Up</button> */}
       </div>
 
       {/* Top Items Section */}
