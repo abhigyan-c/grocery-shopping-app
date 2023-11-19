@@ -15,7 +15,7 @@ const Navigation = () => {
     <nav>
       <ul>
         <li><Link to="/order-history">Order History</Link></li>
-        <li><Link to="/product/1">Product 1</Link></li>
+        <li><Link to="/product/:itemId">Product 1</Link></li>
         {/* Add more links for other routes */}
       </ul>
     </nav>
@@ -120,7 +120,7 @@ function App() {
     },
   ];
 
-  const [loggedIn, setLoggedIn] = useState(false); //use this is log-in/sign-in
+  const [loggedIn, setLoggedIn] = useState(true); //use this is log-in/sign-in
 
   return (
     <Router>
@@ -131,7 +131,7 @@ function App() {
         <Routes>
           <Route path = "/" element = {<Landing/>}/>
           <Route path="/order-history" element={<OrderHistory orders = {orders}/>} />
-          <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/profile" element={<Profile/>}/>
 
       </Routes>

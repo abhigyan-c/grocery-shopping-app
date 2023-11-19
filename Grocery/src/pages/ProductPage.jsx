@@ -1,26 +1,84 @@
 // ProductPage.js
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom'; // Add this import
 import './ProductPage.css';
 
 const ProductPage = () => {
-  const product = {
-    name: 'Dragon Fruit',
-    photo: 'https://i.imgur.com/qqzMiJW.png',
-    ratings: 4.5,
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.",
-    features: [
-      "Feature 1: Lorem ipsum dolor sit amet.",
-      "Feature 2: Consectetur adipiscing elit.",
-      "Feature 3: Nulla facilisi."
-    ],
-  };
+  const { id } = useParams();
+  console.log(id);
+  const [product, setProduct] = useState({
+    name: '',
+    photo: '',
+    ratings: 0,
+    description: '',
+    features: [],
+  });
 
   const userRatings = [
     { name: 'User1', rating: 4 },
     { name: 'User2', rating: 5 },
     { name: 'User3', rating: 3.5 },
   ];
+
+  const [loading, setLoading] = useState(true);
+
+  const executeSQLQuery = async (query, params) => {
+    try {
+      const response = await axios.post('http://localhost:8080/api/execute-sql', { query, params }, { timeout: 20000 });
+      return response.data;
+    } catch (error) {
+      console.error('Error executing SQL query:', error);
+      throw error;
+    }
+  };
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Define your SQL query for fetching product details and ratings
+        const sqlQuery = `
+          SELECT 
+            i.item_id,
+            i.item_name,
+            i.item_rating,
+            i.image_link,
+            i.description
+          FROM 
+            inventory i
+          WHERE 
+            i.item_id = ${id};
+        `;
+  
+        // Pass the actual item_id when making the request
+        const params = [id];
+        const fetchedData = await executeSQLQuery(sqlQuery, params);
+  
+        // Check if fetchedData is an array and take the first element
+        const productData = Array.isArray(fetchedData) ? fetchedData[0] : fetchedData;
+  
+        setProduct({
+          name: productData.item_name,
+          photo: productData.image_link,
+          ratings: productData.item_rating,
+          description: productData.description,
+        });
+  
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  }, [id]);
+  
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="product-page-container">
