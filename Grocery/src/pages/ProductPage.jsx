@@ -98,9 +98,9 @@ const ProductPage = () => {
             <button>Check</button>
           </div>
           <div className="product-actions">
-            <button className="add-to-cart">Add to Cart</button>
-            <button className="add-to-wishlist">Add to Wishlist</button>
-            <button className="buy-now">Buy Now</button>
+            <button className="add-to-cart btn-45"><span>Add to Cart</span></button>
+            <button className="add-to-wishlist btn-45"><span>Add to Wishlist</span></button>
+            <button className="buy-now btn-45"><span>Buy Now</span></button>
           </div>
           <div className='product-desc'>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores dignissimos aut, officia explicabo nostrum corrupti nisi ut eveniet at obcaecati eos tenetur dolor in. Obcaecati delectus eaque quis quo laudantium.
