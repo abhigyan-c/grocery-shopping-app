@@ -95,7 +95,7 @@ const ProductPage = () => {
           <div className="pincode-check">
             <label>Check Pincode:</label>
             <input type="text" placeholder="Enter Pincode" />
-            <button>Check</button>
+            <button className='btn-45'><span>Check</span></button>
           </div>
           <div className="product-actions">
             <button className="add-to-cart btn-45"><span>Add to Cart</span></button>
