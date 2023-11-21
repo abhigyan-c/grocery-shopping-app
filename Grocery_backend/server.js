@@ -101,6 +101,19 @@ app.post('/api/signup', (req, res) => {
 
 
 
+app.get('/api/top-items', (req, res) => {
+  const query = 'SELECT item_id, item_name, image_link, price FROM inventory LIMIT 10'; // Fetch the first 10 items with specified columns
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error executing SQL query:', err);
+      res.status(500).json({ error: 'Error executing SQL query' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
 
 app.post('/api/execute-sql', (req, res) => {
   const { query } = req.body;

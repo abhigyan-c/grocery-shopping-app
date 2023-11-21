@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import './Landing.css';
 import Navbar from './Navbar';
 import item1 from './item1.png';
 import item2 from './item2.png';
+import TopItems from './TopItems';
 
 const Landing = () => {
+  const [topItems, setTopItems] = useState([]);
+
+  useEffect(() => {
+    const fetchTopItems = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/top-items');
+        setTopItems(response.data);
+      } catch (error) {
+        console.error('Error fetching top items:', error);
+      }
+    };
+
+    fetchTopItems();
+  }, []);
+
   return (
     <div className="landing-container">
 
@@ -18,31 +35,7 @@ const Landing = () => {
       {/* Top Items Section */}
       <section>
         <h2>Top Items</h2>
-        <div className="top-items-container">
-          {/* Display top items as cards */}
-          <div className="top-item">
-            <img src={item1} alt="cucumber" />
-            <div className="item-details">
-              <p>Cucumber</p>
-              <p>$10.99</p>
-            </div>
-          </div>
-          <div className="top-item">
-            <img src={item2} alt="Tomato" />
-            <div className="item-details">
-              <p>Tomato</p>
-              <p>$8.99</p>
-            </div>
-          </div>
-          <div className="top-item">
-            <img src={item2} alt="DragonFruit" />
-            <div className="item-details">
-              <p>DragonFruit</p>
-              <p>$11.99</p>
-            </div>
-          </div>
-          {/* Add more top items as needed */}
-        </div>
+        <TopItems />
       </section>
     </div>
   );
