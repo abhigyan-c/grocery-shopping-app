@@ -8,6 +8,7 @@ import Navbar from './pages/Navbar'
 import ProductPage from './pages/ProductPage'
 import Landing from './pages/Landing';
 import Navbar2 from './pages/Navbar2';
+import Login from './pages/Login';
 
 
 const Navigation = () => {
@@ -120,7 +121,10 @@ function App() {
     },
   ];
 
-  const [loggedIn, setLoggedIn] = useState(true); //use this is log-in/sign-in
+  const [loggedIn, setLoggedIn] = useState(false); //use this is log-in/sign-in
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
 
   return (
     <Router>
@@ -133,7 +137,10 @@ function App() {
           <Route path="/order-history" element={<OrderHistory orders = {orders}/>} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/profile" element={<Profile/>}/>
-
+          <Route
+            path="/login"
+            element={<Login onLogin={handleLogin} />}
+          />
       </Routes>
       </div>
     </Router>

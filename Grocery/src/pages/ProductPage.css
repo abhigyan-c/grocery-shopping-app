@@ -338,3 +338,45 @@
   transform: translateX(100%);
 }
 /* new css for buttons */
+
+
+.pincode-message {
+  display: flex;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.serviceable {
+  color: green;
+}
+
+.not-serviceable {
+  color: red;
+}
+
+.add-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  button {
+    padding: 8px 15px;
+    background-color: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}

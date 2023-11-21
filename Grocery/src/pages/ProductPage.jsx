@@ -33,7 +33,36 @@ const ProductPage = () => {
       throw error;
     }
   };
-  
+  const [pincode, setPincode] = useState('');
+  const [pincodeStatus, setPincodeStatus] = useState(null);
+  const checkPincode = async () => {
+    try {
+        const response = await executeSQLQuery(`SELECT * FROM serviceable_pins WHERE pincode = ${pincode}`);
+        if (response.length > 0) {
+            setPincodeStatus('serviceable');
+        } else {
+            setPincodeStatus('not-serviceable');
+        }
+    } catch (error) {
+        console.error('Error checking pincode:', error);
+    }
+};
+
+const [userRating, setUserRating] = useState(0);
+
+const addRating = async () => {
+  try {
+    // Add your logic to update the database with the user's rating
+    // For example, you can use executeSQLQuery to insert the rating into a ratings table
+
+    console.log(`User added a rating: ${userRating}`);
+    // Update the userRatings state to reflect the new rating
+    setUserRatings([...userRatings, { name: 'User', rating: userRating }]);
+  } catch (error) {
+    console.error('Error adding rating:', error);
+  }
+};
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -94,8 +123,15 @@ const ProductPage = () => {
           </div>
           <div className="pincode-check">
             <label>Check Pincode:</label>
-            <input type="text" placeholder="Enter Pincode" />
-            <button className='btn-45'><span>Check</span></button>
+            <input type="text" placeholder="Enter Pincode" value = {pincode} onChange={(e) => setPincode(e.target.value)}/>
+            <button className='btn-45' onClick={checkPincode}><span>Check</span></button>
+            </div>
+            <div>
+            {pincodeStatus && (
+              <div className={`pincode-message ${pincodeStatus}`}>
+              {pincodeStatus === 'serviceable' ? 'Serviceable Pincode' : 'Not Serviceable Pincode'}
+              </div>
+            )}
           </div>
           <div className="product-actions">
             <button className="add-to-cart btn-45"><span>Add to Cart</span></button>
@@ -103,7 +139,8 @@ const ProductPage = () => {
             <button className="buy-now btn-45"><span>Buy Now</span></button>
           </div>
           <div className='product-desc'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores dignissimos aut, officia explicabo nostrum corrupti nisi ut eveniet at obcaecati eos tenetur dolor in. Obcaecati delectus eaque quis quo laudantium.
+            {product.description}
+          
           </div>
         </div>
         
@@ -126,6 +163,20 @@ const ProductPage = () => {
             </li>
           ))}
         </ul>
+        <div className="add-rating">
+          <label>Add Your Rating:</label>
+          <select value={userRating} onChange={(e) => setUserRating(e.target.value)}>
+            <option value={0}>Select Rating</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+          <button className="btn-45" onClick={addRating}>
+            <span>Add Rating</span>
+          </button>
+        </div>
       </div>
     </div>
   );
