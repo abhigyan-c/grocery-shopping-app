@@ -24,7 +24,6 @@ const Landing = () => {
 
   return (
     <div className="landing-container">
-
       {/* Search Bar */}
       <div className="search-bar">
         <input type="text" placeholder="   Search for items" />

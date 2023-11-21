@@ -10,7 +10,7 @@ const port = 8080;
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'abhigyan',   //change this password according to loacl your machine
+  password: 'meet1180',   //change this password according to loacl your machine
   database: 'grocery',
 });
 
