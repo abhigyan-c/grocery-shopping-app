@@ -9,6 +9,7 @@ import ProductPage from './pages/ProductPage'
 import Landing from './pages/Landing';
 import Navbar2 from './pages/Navbar2';
 import Login from './pages/Login';
+import Wishlist from './pages/Wishlist';
 
 
 const Navigation = () => {
@@ -141,6 +142,7 @@ function App() {
             path="/login"
             element={<Login onLogin={handleLogin} />}
           />
+          <Route path='/Wishlist' element={<Wishlist/>} />
       </Routes>
       </div>
     </Router>

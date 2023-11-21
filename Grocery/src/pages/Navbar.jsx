@@ -14,7 +14,7 @@ const NavBar = () => {
           Orders
         </Link>
         
-        <Link to="/wishlist" className="navbar-item">
+        <Link to="/Wishlist" className="navbar-item">
           <Heart size={24} />
           Wishlist
         </Link>
