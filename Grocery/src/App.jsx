@@ -8,6 +8,7 @@ import Navbar from './pages/Navbar'
 import ProductPage from './pages/ProductPage'
 import Landing from './pages/Landing';
 import Navbar2 from './pages/Navbar2';
+import Wishlist from './pages/Wishlist';
 
 
 const Navigation = () => {
@@ -133,7 +134,7 @@ function App() {
           <Route path="/order-history" element={<OrderHistory orders = {orders}/>} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/profile" element={<Profile/>}/>
-
+          <Route path='/Wishlist' element={<Wishlist/>} />
       </Routes>
       </div>
     </Router>
