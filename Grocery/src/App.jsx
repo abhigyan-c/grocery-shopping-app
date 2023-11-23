@@ -123,15 +123,19 @@ function App() {
   ];
 
   const [loggedIn, setLoggedIn] = useState(false); //use this is log-in/sign-in
-  const handleLogin = () => {
+  const [custId, setCustId] = useState(0);
+  const handleLogin = (customerId) => {
     setLoggedIn(true);
+    setCustId(customerId);
   };
+
+  console.log({custId});
 
   return (
     <Router>
       <div>
         {/* Your other components and routes */}
-        {loggedIn && <Navbar/>}
+        {loggedIn && <Navbar custId={custId}/>}
         {!loggedIn && <Navbar2/>}
         <Routes>
           <Route path = "/" element = {<Landing/>}/>
@@ -142,7 +146,7 @@ function App() {
             path="/login"
             element={<Login onLogin={handleLogin} />}
           />
-          <Route path='/Wishlist' element={<Wishlist/>} />
+          <Route path='/wishlist/:custId' element={<Wishlist custid={custId}/>} />
       </Routes>
       </div>
     </Router>

@@ -20,7 +20,7 @@ const Login = ({ onLogin }) => {
         console.log("Came to login");
         const response = await axios.post('http://localhost:8080/api/login', { email, password });
         if (response.data.success) {
-          onLogin();
+          onLogin(response.data.custId);
           navigate('/');
         } else {
           console.log('Login failed');
@@ -34,7 +34,7 @@ const Login = ({ onLogin }) => {
           { headers: { 'Content-Type': 'application/json' } }
         );
         if (response.data.success) {
-          onLogin();
+          onLogin(response.data.custId);
           navigate('/');
         } else {
           console.log('Signup failed');

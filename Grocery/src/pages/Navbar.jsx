@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Home, ShoppingBag, LogOut, ShoppingCart, Heart, List, Settings } from 'react-feather';
 import './NavBar.css'; // Import your CSS file
 
-const NavBar = () => {
+const NavBar = ({ custId }) => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -14,7 +14,7 @@ const NavBar = () => {
           Orders
         </Link>
         
-        <Link to="/Wishlist" className="navbar-item">
+        <Link to={`/wishlist/${custId}`}  className="navbar-item">
           <Heart size={24} />
           Wishlist
         </Link>
