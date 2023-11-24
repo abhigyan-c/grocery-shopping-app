@@ -133,7 +133,40 @@ app.post('/api/signup', (req, res) => {
   });
 });
 
+app.post('/api/add-to-wishlist', (req, res) => {
+  const { custId, itemId } = req.body;
 
+  // Validate that custId and itemId are present
+  if (!custId || !itemId) {
+    return res.status(400).json({ error: 'Missing required parameters: custId and itemId' });
+  }
+
+  // Check if the item is already in the wishlist
+  const checkQuery = 'SELECT * FROM wishlist WHERE cust_id = ? AND item_id = ?';
+  db.query(checkQuery, [custId, itemId], (checkError, checkResults) => {
+    if (checkError) {
+      console.error('Error checking wishlist:', checkError);
+      return res.status(500).json({ error: 'Error checking wishlist' });
+    }
+
+    if (checkResults.length > 0) {
+      // The item is already in the wishlist
+      return res.json({ success: false, message: 'Item already in wishlist' });
+    }
+
+    // If the item is not in the wishlist, add it
+    const addToWishlistQuery = 'INSERT INTO wishlist (cust_id, item_id) VALUES (?, ?)';
+    db.query(addToWishlistQuery, [custId, itemId], (addToWishlistError) => {
+      if (addToWishlistError) {
+        console.error('Error adding item to wishlist:', addToWishlistError);
+        return res.status(500).json({ error: 'Error adding item to wishlist' });
+      }
+
+      // Item added to the wishlist successfully
+      return res.json({ success: true, message: 'Item added to wishlist successfully' });
+    });
+  });
+});
 
 app.get('/api/top-items', (req, res) => {
   const query = 'SELECT item_id, item_name, image_link, price FROM inventory LIMIT 10'; // Fetch the first 10 items with specified columns

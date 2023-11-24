@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import toast from 'react-hot-toast'; 
 import { useParams } from 'react-router-dom'; // Add this import
 import './ProductPage.css';
 
@@ -46,6 +47,27 @@ const ProductPage = () => {
     } catch (error) {
         console.error('Error checking pincode:', error);
     }
+};
+
+const addToWishlist = async () => {
+  try {
+    // Make a request to your server to add the item to the wishlist
+    const response = await axios.post('http://localhost:8080/api/add-to-wishlist', {
+      custId: 101, // Replace with the actual custId
+      itemId: id, // Using the id obtained from useParams
+    });
+
+    if (response.data.success) {
+      // If the item is added to the wishlist successfully, show a toast message
+      toast.success('Item added to wishlist successfully!');
+    } else {
+      // If there was an issue adding the item to the wishlist, show an error toast
+      toast.error('Error adding item to wishlist');
+    }
+  } catch (error) {
+    console.error('Error adding item to wishlist:', error);
+    toast.error('Error adding item to wishlist');
+  }
 };
 
 const [userRating, setUserRating] = useState(0);
@@ -135,8 +157,8 @@ const addRating = async () => {
           </div>
           <div className="product-actions">
             <button className="add-to-cart btn-45"><span>Add to Cart</span></button>
-            <button className="add-to-wishlist btn-45"><span>Add to Wishlist</span></button>
-            <button className="buy-now btn-45"><span>Buy Now</span></button>
+            <button className="add-to-wishlist btn-45" onClick={addToWishlist}><span>Add to Wishlist</span></button>
+            
           </div>
           <div className='product-desc'>
             {product.description}
