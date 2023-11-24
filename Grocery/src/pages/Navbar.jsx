@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 import { Home, ShoppingBag, LogOut, ShoppingCart, Heart, List, Settings } from 'react-feather';
 import './NavBar.css'; // Import your CSS file
 
+
+
 const NavBar = ({ custId }) => {
+
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -30,10 +34,10 @@ const NavBar = ({ custId }) => {
           <Settings size={24} />
           Profile
         </Link>
-        <Link to="/logout" className="navbar-item">
-          <LogOut size={24} />
+        <Link to="/logout" className='navbar-item'>
+          <LogOut size={24}/>
           Log Out
-        </Link>
+          </Link>
       </div>
     </nav>
   );

@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
 import SearchResults from './pages/SearchResults';
+import Logout from './pages/Logout';
 
 
 const Navigation = () => {
@@ -131,6 +132,11 @@ function App() {
     setCustId(customerId);
   };
 
+  const handleLogout = () => {
+    setCustId(0);
+    setLoggedIn(false);
+  }
+
   console.log({custId});
 
   return (
@@ -151,6 +157,7 @@ function App() {
           <Route path='/wishlist/:custId' element={<Wishlist custid={custId}/>} />
           <Route path='/cart/:custId' element={<Cart custid = {custId}/>}/>
           <Route path='/searchresults' element={<SearchResults/>}/>
+          <Route path='/logout' element={<Logout onLogout={handleLogout}/>}/>
       </Routes>
       </div>
     </Router>

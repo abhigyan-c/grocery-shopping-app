@@ -13,15 +13,15 @@ function Profile() {
     // Add more order history entries here
   ]);
   const [wishlist, setWishlist] = useState([
-    { id: 1, item: 'Product A' },
-    { id: 2, item: 'Product B' },
-    { id: 3, item: 'Product C' },
+    { id: 1, item: 'Dragon Fruit' },
+    { id: 2, item: 'Apricot' },
+    { id: 3, item: 'Aluminium Foil' },
     // Add more wishlist items here
   ]);
   const [reviews, setReviews] = useState([
-    { id: 1, product: 'Product X', rating: 4, review: 'Great product!' },
-    { id: 2, product: 'Product Y', rating: 5, review: 'Excellent quality!' },
-    { id: 3, product: 'Product Z', rating: 3, review: 'Decent product.' },
+    { id: 1, product: 'Rice', rating: 4, review: 'Great product!' },
+    { id: 2, product: 'Pens', rating: 5, review: 'Excellent quality!' },
+    { id: 3, product: 'Berries', rating: 3, review: 'Decent product.' },
     // Add more reviews here
   ]);
   const [orderTracking, setOrderTracking] = useState([
@@ -40,11 +40,7 @@ function Profile() {
   return (
     <div className="profile-container">
       <div className='header'>
-      <h2 className="profile-heading">Welcome, {profileName}!</h2>
-      <button onClick={() => setIsEditing(true)} className="settings">
-            <Settings />
-      </button>
-      <button className='logout'><LogOut/></button>
+      <h2 className="profile-heading">Welcome</h2>
       </div>
       
 
