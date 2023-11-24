@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import toast from 'react-hot-toast'; 
+import {toast,Toaster} from 'react-hot-toast'; 
 import { useParams } from 'react-router-dom'; // Add this import
 import './ProductPage.css';
 
@@ -155,11 +155,14 @@ const addRating = async () => {
   }
 
   return (
+    <>
+    <Toaster position="top-center" reverseOrder={true}/>
+    
     <div className="product-page-container">
         
       <div className="product-details">
       <div className="product-photo">
-          <img src={product.photo} alt={product.name}/>
+          <img src={product.photo} alt={product.name} className='item-img'/>
         </div>
         <div className="product-info">
           <h1>{product.name}</h1>
@@ -240,6 +243,7 @@ const addRating = async () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

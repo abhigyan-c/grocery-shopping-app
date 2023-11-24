@@ -25,7 +25,7 @@ const TopItems = () => {
       {topItems.map((item, index) => (
         <div key={index} className="top-item">
             <Link to={`/product/${item.item_id}`} key={item.item_id} className="top-item">
-          <img src={item.image_link} alt={item.item_name} />
+          <img className='top-item-img'src={item.image_link} alt={item.item_name} />
           <div className="item-details">
             <p>{item.item_name}</p>
             <p>₹{item.price.toFixed(2)}</p>

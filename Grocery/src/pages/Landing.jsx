@@ -32,7 +32,7 @@ const Landing = () => {
       </div>
 
       {/* Top Items Section */}
-      <section>
+      <section className='top-item-section'>
         <h2>Top Items</h2>
         <TopItems />
       </section>
