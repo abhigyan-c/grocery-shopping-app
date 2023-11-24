@@ -11,6 +11,7 @@ import Navbar2 from './pages/Navbar2';
 import Login from './pages/Login';
 import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
+import SearchResults from './pages/SearchResults';
 
 
 const Navigation = () => {
@@ -149,6 +150,7 @@ function App() {
           />
           <Route path='/wishlist/:custId' element={<Wishlist custid={custId}/>} />
           <Route path='/cart/:custId' element={<Cart custid = {custId}/>}/>
+          <Route path='/searchresults' element={<SearchResults/>}/>
       </Routes>
       </div>
     </Router>

@@ -10,7 +10,7 @@ const port = 8080;
 const db = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'meet1180',   //change this password according to loacl your machine
+  password: 'abhigyan',   //change this password according to loacl your machine
   database: 'grocery',
 });
 
@@ -86,6 +86,20 @@ app.post('/api/login', (req, res) => {
       }
   });
 });
+
+const executeSQLQuery = (query, params) => {
+  return new Promise((resolve, reject) => {
+    db.query(query, params, (err, results) => {
+      if (err) {
+        console.error('Error executing SQL query:', err);
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+
 
 app.post('/api/signup', (req, res) => {
   const { name, email, password } = req.body;
@@ -166,6 +180,47 @@ app.post('/api/add-to-wishlist', (req, res) => {
       return res.json({ success: true, message: 'Item added to wishlist successfully' });
     });
   });
+});
+
+
+app.post('/api/search', async (req, res) => {
+  try {
+    const searchQuery = req.body.searchQuery;
+
+    if (!searchQuery) {
+      return res.status(400).json({ error: 'Invalid search query' });
+    }
+
+    const searchTerms = searchQuery.toLowerCase().split(' ');
+
+    // Construct a WHERE clause dynamically based on search terms
+    const whereClause = searchTerms
+      .map(() => '(LOWER(item_name) LIKE ? OR LOWER(description) LIKE ?)')
+      .join(' AND ');
+
+    const sqlQuery = `
+      SELECT
+        item_id,
+        item_name,
+        image_link,
+        description,
+        price
+      FROM
+        inventory
+      WHERE
+        ${whereClause};
+    `;
+
+    // Create parameter array for each search term
+    const params = searchTerms.flatMap((term) => [`%${term}%`, `%${term}%`]);
+
+    const searchResults = await executeSQLQuery(sqlQuery, params);
+
+    return res.json(searchResults);
+  } catch (error) {
+    console.error('Error during search:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
 
 app.post('/api/add-to-cart', (req, res) => {
