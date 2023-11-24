@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom'; // Add this import
 import './ProductPage.css';
 
-const ProductPage = () => {
+const ProductPage = ({custId}) => {
   const { id } = useParams();
   console.log(id);
   const [product, setProduct] = useState({
@@ -54,7 +54,7 @@ const addToWishlist = async () => {
   try {
     // Make a request to your server to add the item to the wishlist
     const response = await axios.post('http://localhost:8080/api/add-to-wishlist', {
-      custId: 101, // Replace with the actual custId
+      custId: custId, // Replace with the actual custId
       itemId: id, // Using the id obtained from useParams
     });
 
@@ -75,7 +75,7 @@ const addToCart = async () => {
   try {
     // Make a request to your server to add the item to the cart
     const response = await axios.post('http://localhost:8080/api/add-to-cart', {
-      custId: 101, // Replace with the actual custId
+      custId: custId, // Replace with the actual custId
       itemId: id, // Using the id obtained from useParams
       quantity: quantity, // Use the quantity state
     });

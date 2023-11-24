@@ -141,7 +141,7 @@ function App() {
         <Routes>
           <Route path = "/" element = {<Landing/>}/>
           <Route path="/order-history" element={<OrderHistory orders = {orders}/>} />
-          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/product/:id" element={<ProductPage custId={custId}/>} />
           <Route path="/profile" element={<Profile/>}/>
           <Route
             path="/login"
