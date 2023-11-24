@@ -5,9 +5,11 @@ import Navbar from './Navbar';
 import item1 from './item1.png';
 import item2 from './item2.png';
 import TopItems from './TopItems';
+import { Link } from 'react-router-dom';
 
 const Landing = () => {
   const [topItems, setTopItems] = useState([]);
+
 
   useEffect(() => {
     const fetchTopItems = async () => {
@@ -25,12 +27,13 @@ const Landing = () => {
   return (
     <div className="landing-container">
       {/* Search Bar */}
+      <Link to="/searchresults">
       <div className="search-bar">
-        <input type="text" placeholder="   Search for items" />
-        <button className="search-button">Search</button>
+        
+        <button className="search-button">Click here to search for items</button>
         {/* <button className="login-button">Log In or Sign Up</button> */}
       </div>
-
+      </Link>
       {/* Top Items Section */}
       <section className='top-item-section'>
         <h2>Top Items</h2>
