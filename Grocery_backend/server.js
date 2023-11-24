@@ -265,6 +265,37 @@ app.get('/api/cart/:custid', (req, res) => {
   });
 });
 
+
+async function executeSQLProcedure(procedureName, params) {
+  const queryString = `CALL ${procedureName}(${params.map(() => '?').join(',')})`;
+  console.log('Executing query:', queryString);
+  console.log('Parameters:', params);
+
+  return new Promise((resolve, reject) => {
+    db.query(queryString, params, (error, results) => {
+      if (error) {
+        return reject(error);
+      }
+      resolve(results);
+    });
+  });
+}
+
+app.post('/api/order-history/:cust_id', async (req, res) => {
+  const cust_id = req.params.cust_id;
+  console.log("Reached order history api endpoint");
+
+  try {
+    const [rows] = await executeSQLProcedure('GetOrderHistory', [cust_id]);
+    const orderHistory = rows;
+    console.log("Order history result:",{orderHistory});
+    res.json(orderHistory);
+  } catch (error) {
+    console.error('Error fetching order history:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.post('/api/update-cart-quantity', (req, res) => {
   const { custId, itemId, quantity } = req.body;
 

@@ -141,7 +141,7 @@ function App() {
         {!loggedIn && <Navbar2/>}
         <Routes>
           <Route path = "/" element = {<Landing/>}/>
-          <Route path="/order-history" element={<OrderHistory orders = {orders}/>} />
+          <Route path="/order-history/:custId" element={<OrderHistory cust_id={custId}/>} />
           <Route path="/product/:id" element={<ProductPage custId={custId}/>} />
           <Route path="/profile" element={<Profile/>}/>
           <Route

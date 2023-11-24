@@ -9,7 +9,7 @@ const NavBar = ({ custId }) => {
     <nav className="navbar">
       <div className="navbar-container">
         
-        <Link to="/order-history" className="navbar-item">
+        <Link to={`/order-history/${custId}`} className="navbar-item">
           <List size={24} />
           Orders
         </Link>
