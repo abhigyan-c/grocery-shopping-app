@@ -168,6 +168,27 @@ app.post('/api/add-to-wishlist', (req, res) => {
   });
 });
 
+app.post('/api/add-to-cart', (req, res) => {
+  const { custId, itemId, quantity } = req.body;
+
+  // Validate that the required parameters are present
+  if (!custId || !itemId || !quantity) {
+    return res.status(400).json({ error: 'Missing required parameters' });
+  }
+
+  // Insert into cart
+  const insertQuery = 'INSERT INTO cart (cust_id, item_id, quantity) VALUES (?, ?, ?)';
+  db.query(insertQuery, [custId, itemId, quantity], (err) => {
+    if (err) {
+      console.error('Error adding item to cart:', err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    // Return success response
+    return res.json({ success: true });
+  });
+});
+
 app.get('/api/top-items', (req, res) => {
   const query = 'SELECT item_id, item_name, image_link, price FROM inventory LIMIT 10'; // Fetch the first 10 items with specified columns
   db.query(query, (err, results) => {

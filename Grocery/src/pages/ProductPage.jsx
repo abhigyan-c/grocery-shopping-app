@@ -24,6 +24,7 @@ const ProductPage = () => {
   ];
 
   const [loading, setLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
 
   const executeSQLQuery = async (query, params) => {
     try {
@@ -67,6 +68,28 @@ const addToWishlist = async () => {
   } catch (error) {
     console.error('Error adding item to wishlist:', error);
     toast.error('Error adding item to wishlist');
+  }
+};
+
+const addToCart = async () => {
+  try {
+    // Make a request to your server to add the item to the cart
+    const response = await axios.post('http://localhost:8080/api/add-to-cart', {
+      custId: 101, // Replace with the actual custId
+      itemId: id, // Using the id obtained from useParams
+      quantity: quantity, // Use the quantity state
+    });
+
+    if (response.data.success) {
+      // If the item is added to the cart successfully, show a toast message
+      toast.success('Item added to cart successfully!');
+    } else {
+      // If there was an issue adding the item to the cart, show an error toast
+      toast.error('Error adding item to cart');
+    }
+  } catch (error) {
+    console.error('Error adding item to cart:', error);
+    toast.error('Error adding item to cart');
   }
 };
 
@@ -156,10 +179,26 @@ const addRating = async () => {
             )}
           </div>
           <div className="product-actions">
-            <button className="add-to-cart btn-45"><span>Add to Cart</span></button>
-            <button className="add-to-wishlist btn-45" onClick={addToWishlist}><span>Add to Wishlist</span></button>
-            
+        <div className='quantity-selector'>
+          <label htmlFor='quantity'>Quantity:</label>
+          <div className='inp'>
+            <input
+              type='number'
+              id='quantity'
+              name='quantity'
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              min='1'
+            />
           </div>
+        </div>
+        <button className="add-to-cart btn-45" onClick={addToCart}>
+          <span>Add to Cart</span>
+        </button>
+        <button className="add-to-wishlist btn-45" onClick={addToWishlist}>
+          <span>Add to Wishlist</span>
+        </button>
+      </div>
           <div className='product-desc'>
             {product.description}
           
