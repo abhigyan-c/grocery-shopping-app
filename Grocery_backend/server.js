@@ -189,6 +189,135 @@ app.post('/api/add-to-cart', (req, res) => {
   });
 });
 
+app.get('/api/cart/:custid', (req, res) => {
+  const custId = req.params.custid;
+  console.log("In cart api: ", {custId});
+  // Fetch cart items based on customer ID
+  const query = `
+    SELECT c.cust_id, c.item_id, i.item_name, i.image_link, i.price, c.quantity
+    FROM cart c
+    INNER JOIN inventory i ON c.item_id = i.item_id
+    WHERE c.cust_id = ?;
+  `;
+
+  db.query(query, [custId], (err, results) => {
+    if (err) {
+      console.error('Error fetching cart items:', err);
+      res.status(500).json({ error: 'Error fetching cart items' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.post('/api/update-cart-quantity', (req, res) => {
+  const { custId, itemId, quantity } = req.body;
+
+  // Validate that the required parameters are present
+  if (!custId || !itemId || !quantity) {
+    return res.status(400).json({ error: 'Missing required parameters' });
+  }
+
+  // Update the quantity in the cart
+  const updateQuery = 'UPDATE cart SET quantity = ? WHERE cust_id = ? AND item_id = ?';
+  db.query(updateQuery, [quantity, custId, itemId], (err) => {
+    if (err) {
+      console.error('Error updating cart quantity:', err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    // Return success response
+    return res.json({ success: true });
+  });
+});
+
+app.post('/api/remove-from-cart', (req, res) => {
+  const { custId, itemId } = req.body;
+
+  // Validate that the required parameters are present
+  if (!custId || !itemId) {
+    return res.status(400).json({ error: 'Missing required parameters' });
+  }
+
+  // Delete the item from the cart
+  const deleteQuery = 'DELETE FROM cart WHERE cust_id = ? AND item_id = ?';
+  db.query(deleteQuery, [custId, itemId], (err) => {
+    if (err) {
+      console.error('Error removing item from cart:', err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
+    // Return success response
+    return res.json({ success: true });
+  });
+});
+
+app.post('/api/checkout', (req, res) => {
+  const { custId, cartItems } = req.body;
+
+  // Validate that the required parameters are present
+  if (!custId || !cartItems || !Array.isArray(cartItems)) {
+    return res.status(400).json({ error: 'Invalid request parameters' });
+  }
+
+  // Perform the checkout process
+  // Update inventory and clear cart entries (for simplicity, update inventory only)
+  const updateInventoryQuery = 'UPDATE inventory SET item_quantity = item_quantity - ? WHERE item_id = ?';
+
+  // Initialize order ID to 1 plus the max of all current order IDs
+  let orderId;
+  db.query('SELECT MAX(order_id) AS maxOrderId FROM order_history', (err, result) => {
+    if (err) {
+      console.error('Error getting max order ID:', err);
+      return res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+
+    orderId = result[0].maxOrderId + 1;
+
+    // Process each item in the cart
+    cartItems.forEach((item) => {
+      db.query(updateInventoryQuery, [item.quantity, item.item_id], (err) => {
+        if (err) {
+          console.error('Error updating inventory during checkout:', err);
+          return res.status(500).json({ success: false, error: 'Internal Server Error' });
+        }
+
+        // Insert entry into order_history table
+        const orderHistoryQuery = 'INSERT INTO order_history (cust_id, order_id, item_id, order_date) VALUES (?, ?, ?, NOW())';
+        db.query(orderHistoryQuery, [custId, orderId, item.item_id], (err) => {
+          if (err) {
+            console.error('Error inserting into order_history:', err);
+            return res.status(500).json({ success: false, error: 'Internal Server Error' });
+          }
+        });
+      });
+    });
+
+    // Insert entry into order_status table
+    const orderStatusQuery = 'INSERT INTO order_status (cust_id, order_id, status) VALUES (?, ?, "Delivered")';
+    db.query(orderStatusQuery, [custId, orderId], (err) => {
+      if (err) {
+        console.error('Error inserting into order_status:', err);
+        return res.status(500).json({ success: false, error: 'Internal Server Error' });
+      }
+
+      // Clear cart entries
+      const clearCartQuery = 'DELETE FROM cart WHERE cust_id = ?';
+      db.query(clearCartQuery, [custId], (err) => {
+        if (err) {
+          console.error('Error clearing cart entries during checkout:', err);
+          return res.status(500).json({ success: false, error: 'Internal Server Error' });
+        }
+
+        // Return success response
+        return res.json({ success: true });
+      });
+    });
+  });
+});
+
+
+
 app.get('/api/top-items', (req, res) => {
   const query = 'SELECT item_id, item_name, image_link, price FROM inventory LIMIT 10'; // Fetch the first 10 items with specified columns
   db.query(query, (err, results) => {

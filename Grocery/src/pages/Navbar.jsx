@@ -22,7 +22,7 @@ const NavBar = ({ custId }) => {
           <Home size={24} />
           Home
         </Link>
-        <Link to="/cart" className="navbar-item">
+        <Link to={`/cart/${custId}`} className="navbar-item">
           <ShoppingCart size={24} />
           Cart
         </Link>

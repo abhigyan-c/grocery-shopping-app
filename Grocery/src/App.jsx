@@ -10,6 +10,7 @@ import Landing from './pages/Landing';
 import Navbar2 from './pages/Navbar2';
 import Login from './pages/Login';
 import Wishlist from './pages/Wishlist';
+import Cart from './pages/Cart';
 
 
 const Navigation = () => {
@@ -147,6 +148,7 @@ function App() {
             element={<Login onLogin={handleLogin} />}
           />
           <Route path='/wishlist/:custId' element={<Wishlist custid={custId}/>} />
+          <Route path='/cart/:custId' element={<Cart custid = {custId}/>}/>
       </Routes>
       </div>
     </Router>
