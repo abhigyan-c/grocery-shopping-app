@@ -1,27 +1,32 @@
-/* Navbar.css */
-
+/* NavBar.css */
 .navbar {
-    background-color: transparent; /* Blue color */
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    max-width: 100%;
+  background: rgba(255, 255, 255, 0.2); /* Glass-like transparency */
+  backdrop-filter: blur(10px); /* Blurring effect for the glass look */
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
-  
-  .navbar-title {
-    font-size: 2em;
-    font-weight: bold;
+
+  svg {
+    margin-bottom: 5px;
   }
-  
-  .nav-icons {
-    position: absolute;
-    top: 5%;
-    left: 2%;
-    width: 50px;
-    padding: 10px;
-    transition: transform 0.2s;
-  }
-  
-  .nav-icons:hover {
-    transform: scale(1.05);
-  }
+}

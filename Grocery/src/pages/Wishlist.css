@@ -1,0 +1,85 @@
+.outerbox {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+    font-size: 24px;
+  }
+  
+  .box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  
+  .items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .item-name {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .quantity,
+  .price {
+    color: #666;
+    font-size: 16px;
+  }
+  .addtocart-btn{
+      border:2px solid #C683D7;
+      background-color: #ED9ED6;
+      padding: 10px 20px; /* Adjust padding as needed */
+      font-size: 16px;
+      transition: background-color 0.3s;
+      border-radius: 5px;
+      margin-top:10px;
+        /* display:inline-block; */
+
+  }
+
+  .addtocart-btn:hover {
+    background-color: #e681ba;
+  }
+  .addtocart-btn .two{
+    display: none;
+  }
+  .addtocart-btn:hover .two{
+    display:inline;
+  }
+  .addtocart-btn:hover .one{
+    display:none;
+  }
+  .inp{
+    display:flex;
+
+  }
+input{
+    display: inline;
+  }
+.delete-btn{
+
+    display:block;
+    background-color: #e74c3c; /* Red background color */
+  color: #fff; /* White text color */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  /* font-size:16px; */
+  margin-left: 57px;
+  margin-top: 20px;
+}

@@ -65,30 +65,33 @@
   
     button {
       padding: 8px 15px;
-      background-color: #2196f3; /* Blue color */
+      background-color: #2196f3; 
       color: #fff;
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
-  }
+  } 
   
   .product-actions {
     display: flex;
-    gap: 10px;
+    gap: 100px;
   
-    button {
+    .button {
       padding: 12px;
       flex-grow: 1;
-      border: none;
-      border-radius: 4px;
+      border: solid 2px palevioletred;
+      border-radius: 50px;
       cursor: pointer;
-      transition: transform 0.5 s;
+      transition: transform 0.7s ;
     }
   
     .add-to-cart {
-      background-color: #4caf50; /* Green color */
-      color: #fff;
+      /* background-color: #4caf50;  */
+      /* color: #fff; */
+    }
+    .add-to-cart:hover{
+      /* color:#000; */
     }
   
     .add-to-wishlist {
@@ -101,9 +104,86 @@
       color: #fff;
     }
 
-    button:hover {
+    .button:hover {
         transform: scale(1.03);
+        /* background-color: #4caf50; */
     }
+    /* this goes online btn-45 */
+    .btn-45,
+.btn-45 *,
+.btn-45 :after,
+.btn-45 :before,
+.btn-45:after,
+.btn-45:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+.btn-45 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #9198e5;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+}
+.btn-45:disabled {
+  cursor: default;
+}
+.btn-45:-moz-focusring {
+  outline: auto;
+}
+.btn-45 svg {
+  display: block;
+  vertical-align: middle;
+}
+.btn-45 [hidden] {
+  display: none;
+}
+.btn-45 {
+  border: 1px solid;
+  border-radius: 999px;
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  padding: 1.2rem 3rem;
+  position: relative;
+  text-transform: uppercase;
+}
+.btn-45 span {
+  font-weight: 900;
+  mix-blend-mode: difference;
+}
+.btn-45:after,
+.btn-45:before {
+  background: #fff;
+  content: "";
+  height: 100%;
+  left: -100%;
+  position: absolute;
+  top: 0;
+  transition: transform 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+  width: 100%;
+  will-change: transform;
+}
+.btn-45:after {
+  background: #dedede;
+  transition-delay: 0.1s;
+  z-index: -1;
+}
+.btn-45:hover:after,
+.btn-45:hover:before {
+  transform: translateX(100%);
+}
+    /* end  */
   }
   
   .user-ratings {
@@ -170,4 +250,133 @@
   text-overflow: ellipsis;
   white-space: normal; /* Allow text to wrap */
 }
+/* .chk-btn{
+  border: 2px black solid;
+  border-radius: 20px;
+  color: whitesmoke;
+  background-color: #000;
+  transition: 2s smooth;
+}
+.chk-btn:hover{
+  background-color:white;
+  color:#000;
+  
+} */
+.btn-45,
+.btn-45 *,
+.btn-45 :after,
+.btn-45 :before,
+.btn-45:after,
+.btn-45:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+.btn-45 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
 
+}
+.btn-45:disabled {
+  cursor: default;
+}
+.btn-45:-moz-focusring {
+  outline: auto;
+}
+.btn-45 svg {
+  display: block;
+  vertical-align: middle;
+}
+.btn-45 [hidden] {
+  display: none;
+}
+.btn-45 {
+  border: 1px solid;
+  border-radius: 999px;
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  padding: 1.2rem 3rem;
+  position: relative;
+  text-transform: uppercase;
+}
+.btn-45 span {
+  font-weight: 900;
+  mix-blend-mode: difference;
+}
+.btn-45:after,
+.btn-45:before {
+  background: #fff;
+  content: "";
+  height: 100%;
+  left: -100%;
+  position: absolute;
+  top: 0;
+  transition: transform 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+  width: 100%;
+  will-change: transform;
+}
+.btn-45:after {
+  background: #dedede;
+  transition-delay: 0.1s;
+  z-index: -1;
+}
+.btn-45:hover:after,
+.btn-45:hover:before {
+  transform: translateX(100%);
+}
+/* new css for buttons */
+
+
+.pincode-message {
+  display: flex;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.serviceable {
+  color: green;
+}
+
+.not-serviceable {
+  color: red;
+}
+
+.add-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  button {
+    padding: 8px 15px;
+    background-color: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}

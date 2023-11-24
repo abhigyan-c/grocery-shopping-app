@@ -1,15 +1,13 @@
 /* OrderHistory.css */
 
 .order-history-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  
-  height: 100vh; /* Set height to 100% of viewport height */
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  justify-content: flex-start; /* Aligns items from left to right */
+  gap: 20px; /* Adjust the gap between items */
+  margin-top: 10px; /* Adjust the top margin */
+  margin-left: 3%;
+  margin-right: 2%;
 }
 
 .order-cards {
@@ -19,14 +17,12 @@
 }
 
 .order-card {
-  border: 1px solid #ddd;
+  background: #fff;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-  background-color: #fff;
-  color: #333;
+  width: 500px;
+  margin-bottom: 20px;
 
   &:hover {
     transform: scale(1.02);
