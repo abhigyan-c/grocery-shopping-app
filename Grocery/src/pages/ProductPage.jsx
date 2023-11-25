@@ -18,9 +18,9 @@ const ProductPage = ({custId}) => {
   });
 
   const userRatings = [
-    { name: 'User1', rating: 4 },
-    { name: 'User2', rating: 5 },
-    { name: 'User3', rating: 3.5 },
+    { name: 'Naveen', rating: 4 },
+    { name: 'Praveen', rating: 5 },
+    { name: 'Ramesh', rating: 3.5 },
   ];
 
   const [loading, setLoading] = useState(true);
